@@ -40,7 +40,9 @@ public class IntegrationTests {
     @Test
     void doCustomerCommandTest() throws InterruptedException {
         // Given
-        var message = new CustomerRequestPayload().withCustomerId("231").withRequestType(CustomerRequestPayload.RequestType.CREATE);
+        var message = new CustomerRequestPayload()
+                .withCustomerId("231")
+                .withRequestType(CustomerRequestPayload.RequestType.CREATE);
         var headers = new ICustomerCommandsProducer.CustomerRequestPayloadHeaders()
                 .entityId("231")
                 .commonHeader("value")
@@ -60,7 +62,9 @@ public class IntegrationTests {
     @Test
     void onCustomerEventTest() throws InterruptedException {
         // Given
-        var message = new CustomerEventPayload().withCustomerId("123").withEventType(CustomerEventPayload.EventType.CREATED);
+        var message = new CustomerEventPayload()
+                .withCustomerId("123")
+                .withEventType(CustomerEventPayload.EventType.CREATED);
         var headers = new ICustomerEventsProducer.CustomerEventPayloadHeaders()
                 .entityId("123")
                 .commonHeader("value")

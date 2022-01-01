@@ -23,31 +23,37 @@ public class TestsConfiguration {
 
     @Bean
     public IOnCustomerEventConsumerService onCustomerEventConsumerService() {
-        return new IOnCustomerEventConsumerService() {
-            public List receivedMessages = new ArrayList();
-            public List receivedHeaders = new ArrayList();
-            @Override
-            public void onCustomerEvent(Flux<CustomerEventPayload> msg) {
-                msg.subscribe(payload -> {
-                    log.debug("Received message: {}", payload);
-                    receivedMessages.add(payload);
-                });
-            }
-        };
+        return new OnCustomerEventConsumerService();
     }
 
     @Bean
     public IDoCustomerRequestConsumerService doCustomerRequestConsumerService() {
-        return new IDoCustomerRequestConsumerService() {
-            public List receivedMessages = new ArrayList();
-            public List receivedHeaders = new ArrayList();
-            @Override
-            public void doCustomerRequest(Flux<CustomerRequestPayload> msg) {
-                msg.subscribe(payload -> {
-                    log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
-                    receivedMessages.add(payload);
-                });
-            }
-        };
+        return new DoCustomerRequestConsumerService();
+    }
+
+    private class OnCustomerEventConsumerService implements IOnCustomerEventConsumerService {
+        public List receivedMessages = new ArrayList();
+        public List receivedHeaders = new ArrayList();
+
+        @Override
+        public void onCustomerEvent(Flux<CustomerEventPayload> msg) {
+            msg.subscribe(payload -> {
+                log.debug("Received message: {}", payload);
+                receivedMessages.add(payload);
+            });
+        }
+    }
+
+    private class DoCustomerRequestConsumerService implements IDoCustomerRequestConsumerService {
+        public List receivedMessages = new ArrayList();
+        public List receivedHeaders = new ArrayList();
+
+        @Override
+        public void doCustomerRequest(Flux<CustomerRequestPayload> msg) {
+            msg.subscribe(payload -> {
+                log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
+                receivedMessages.add(payload);
+            });
+        }
     }
 }

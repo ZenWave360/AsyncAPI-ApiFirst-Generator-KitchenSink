@@ -1,6 +1,5 @@
 package io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.jdbc;
 
-import io.zenwave360.example.adapters.events.avro.Customer;
 import io.zenwave360.example.adapters.events.avro.CustomerEventPayload;
 import io.zenwave360.example.adapters.events.avro.CustomerRequestPayload;
 import io.zenwave360.example.adapters.events.avro.EventType;
@@ -19,15 +18,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.util.ReflectionTestUtils;
-
-import java.util.List;
-import java.util.Map;
 
 import static io.zenwave360.example.boot.config.TestUtils.awaitReceivedMessages;
 import static io.zenwave360.example.boot.config.TestUtils.getReceivedHeaders;
 import static io.zenwave360.example.boot.config.TestUtils.newCustomer;
-import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
 
 @EmbeddedKafka

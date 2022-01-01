@@ -23,41 +23,49 @@ public class TestsConfiguration {
 
     @Bean
     public IOnCustomerEventConsumerService onCustomerEventConsumerService() {
-        return new IOnCustomerEventConsumerService() {
-            public List receivedMessages = new ArrayList();
-            public List receivedHeaders = new ArrayList();
-            @Override
-            public void onCustomerEvent(CustomerEventPayload payload, CustomerEventPayloadHeaders headers) {
-                log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
-                if(payload.getCustomerId() == null) {
-                    log.info("Throwing validation exception");
-                    throw new ValidationException("customerId is null");
-                }
-                payload.getEventType().toString(); // will throw NPE if null
-                receivedMessages.add(payload);
-                receivedHeaders.add(headers);
-            }
-        };
+        return new OnCustomerEventConsumerService();
     }
 
     @Bean
     public IDoCustomerRequestConsumerService doCustomerRequestConsumerService() {
-        return new IDoCustomerRequestConsumerService() {
-            public List receivedMessages = new ArrayList();
-            public List receivedHeaders = new ArrayList();
-            @Override
-            public void doCustomerRequest(CustomerRequestPayload payload, CustomerRequestPayloadHeaders headers) {
-                log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
-                if(payload.getCustomerId() == null) {
-                    log.info("Throwing validation exception");
-                    throw new ValidationException("customerId is null");
-                }
-                payload.getRequestType().toString(); // will throw NPE if null
-                receivedMessages.add(payload);
-                receivedHeaders.add(headers);
-            }
-        };
+        return new DoCustomerRequestConsumerService();
     }
+
+
+    private class OnCustomerEventConsumerService implements IOnCustomerEventConsumerService {
+        public List receivedMessages = new ArrayList();
+        public List receivedHeaders = new ArrayList();
+
+        @Override
+        public void onCustomerEvent(CustomerEventPayload payload, CustomerEventPayloadHeaders headers) {
+            log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
+            if(payload.getCustomerId() == null) {
+                log.info("Throwing validation exception");
+                throw new ValidationException("customerId is null");
+            }
+            payload.getEventType().toString(); // will throw NPE if null
+            receivedMessages.add(payload);
+            receivedHeaders.add(headers);
+        }
+    }
+
+    private class DoCustomerRequestConsumerService implements IDoCustomerRequestConsumerService {
+        public List receivedMessages = new ArrayList();
+        public List receivedHeaders = new ArrayList();
+
+        @Override
+        public void doCustomerRequest(CustomerRequestPayload payload, CustomerRequestPayloadHeaders headers) {
+            log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
+            if(payload.getCustomerId() == null) {
+                log.info("Throwing validation exception");
+                throw new ValidationException("customerId is null");
+            }
+            payload.getRequestType().toString(); // will throw NPE if null
+            receivedMessages.add(payload);
+            receivedHeaders.add(headers);
+        }
+    }
+
 
     @Bean("do-customer-request-error")
     public Consumer<Message> doCustomerRequestErrorHandler() {

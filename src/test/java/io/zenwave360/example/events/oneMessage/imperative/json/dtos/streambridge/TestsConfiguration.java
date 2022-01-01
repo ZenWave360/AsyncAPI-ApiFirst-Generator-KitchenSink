@@ -24,30 +24,35 @@ public class TestsConfiguration {
 
     @Bean
     public IOnCustomerEventConsumerService onCustomerEventConsumerService() {
-        return new IOnCustomerEventConsumerService() {
-            public List receivedMessages = new ArrayList();
-            public List receivedHeaders = new ArrayList();
-            @Override
-            public void onCustomerEvent(CustomerEventPayload payload, CustomerEventPayloadHeaders headers) {
-                log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
-                receivedMessages.add(payload);
-                receivedHeaders.add(headers);
-            }
-        };
+        return new OnCustomerEventConsumerService();
     }
 
     @Bean
     public IDoCustomerRequestConsumerService doCustomerRequestConsumerService() {
-        return new IDoCustomerRequestConsumerService() {
-            public List receivedMessages = new ArrayList();
-            public List receivedHeaders = new ArrayList();
-            @Override
-            public void doCustomerRequest(CustomerRequestPayload payload, CustomerRequestPayloadHeaders headers) {
-                log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
-                receivedMessages.add(payload);
-                receivedHeaders.add(headers);
-            }
-        };
+        return new DoCustomerRequestConsumerService();
     }
 
+    private class OnCustomerEventConsumerService implements IOnCustomerEventConsumerService {
+        public List receivedMessages = new ArrayList();
+        public List receivedHeaders = new ArrayList();
+
+        @Override
+        public void onCustomerEvent(CustomerEventPayload payload, CustomerEventPayloadHeaders headers) {
+            log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
+            receivedMessages.add(payload);
+            receivedHeaders.add(headers);
+        }
+    }
+
+    private class DoCustomerRequestConsumerService implements IDoCustomerRequestConsumerService {
+        public List receivedMessages = new ArrayList();
+        public List receivedHeaders = new ArrayList();
+
+        @Override
+        public void doCustomerRequest(CustomerRequestPayload payload, CustomerRequestPayloadHeaders headers) {
+            log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
+            receivedMessages.add(payload);
+            receivedHeaders.add(headers);
+        }
+    }
 }
