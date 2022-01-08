@@ -20,6 +20,7 @@
 		<mapstruct.version>1.5.3.Final</mapstruct.version>
 		<spring-cloud.version>2021.0.3</spring-cloud.version>
 		<avro.version>1.11.1</avro.version>
+		<debezium.version>2.1.1.Final</debezium.version>
 		<testcontainers.version>1.17.2</testcontainers.version>
 
 		<zenwave.version>${project.version}</zenwave.version>
@@ -106,6 +107,22 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.debezium</groupId>
+			<artifactId>debezium-api</artifactId>
+			<version>${debezium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.debezium</groupId>
+			<artifactId>debezium-core</artifactId>
+			<version>${debezium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.debezium</groupId>
+			<artifactId>debezium-connector-mysql</artifactId>
+			<version>${debezium.version}</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>io.confluent</groupId>
@@ -278,6 +295,7 @@
 				<version>${zenwave.version}</version>
 				<configuration>
 					<addCompileSourceRoot>true</addCompileSourceRoot>
+					<addTestCompileSourceRoot>true</addTestCompileSourceRoot>
 					<includeProjectClasspath>true</includeProjectClasspath>
 				</configuration>
 				<executions>
@@ -361,7 +379,7 @@
 								<role>provider</role>
 								<style>imperative</style>
 								<useEnterpriseEnvelope>true</useEnterpriseEnvelope>
-								<operationIds>onCustomerEvent,</operationIds>
+								<operationIds>onCustomerEvent</operationIds>
 								<apiPackage>io.zenwave360.example.events.oneMessage.imperative.json.dtos.envelope.streambridge.provider</apiPackage>
 								<modelPackage>io.zenwave360.example.events.oneMessage.model</modelPackage>
 							</configOptions>
@@ -380,7 +398,7 @@
 								<role>client</role>
 								<style>imperative</style>
 								<useEnterpriseEnvelope>true</useEnterpriseEnvelope>
-								<operationIds>onCustomerEvent,</operationIds>
+								<operationIds>onCustomerEvent</operationIds>
 								<apiPackage>io.zenwave360.example.events.oneMessage.imperative.json.dtos.envelope.streambridge.client</apiPackage>
 								<modelPackage>io.zenwave360.example.events.oneMessage.model</modelPackage>
 							</configOptions>
@@ -890,7 +908,7 @@
 								<role>provider</role>
 								<style>imperative</style>
 								<useEnterpriseEnvelope>true</useEnterpriseEnvelope>
-								<operationIds>onCustomerEventAvro,</operationIds>
+								<operationIds>onCustomerEventAvro</operationIds>
 								<apiPackage>io.zenwave360.example.events.oneMessage.imperative.avro.dtos.envelope.streambridge.provider</apiPackage>
 								<modelPackage>io.zenwave360.example.events.oneMessage.model</modelPackage>
 							</configOptions>
@@ -909,7 +927,7 @@
 								<role>client</role>
 								<style>imperative</style>
 								<useEnterpriseEnvelope>true</useEnterpriseEnvelope>
-								<operationIds>onCustomerEventAvro,</operationIds>
+								<operationIds>onCustomerEventAvro</operationIds>
 								<apiPackage>io.zenwave360.example.events.oneMessage.imperative.avro.dtos.envelope.streambridge.client</apiPackage>
 								<modelPackage>io.zenwave360.example.events.oneMessage.model</modelPackage>
 							</configOptions>

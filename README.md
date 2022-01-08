@@ -8,17 +8,17 @@ This repository contains a complete set of examples and tests for [ZenWave Code 
 
 <!-- TOC -->
 * [ZenWave Code Generator for AsyncAPI: API-First Tests, Examples and the Kitchen Sink](#zenwave-code-generator-for-asyncapi--api-first-tests-examples-and-the-kitchen-sink)
-    * [About ZenWave Code Generator for AsyncAPI](#about-zenwave-code-generator-for-asyncapi)
-    * [Usage of this Repository](#usage-of-this-repository)
-    * [ZenWave AsyncAPI Generated Code in a Nutshell](#zenwave-asyncapi-generated-code-in-a-nutshell)
-        * [Provider vs Client](#provider-vs-client)
-        * [Using Generated Code to Produce Messages](#using-generated-code-to-produce-messages)
-        * [Using Generated Code to Consume Messages](#using-generated-code-to-consume-messages)
-    * [Configuring ZenWave Code Generator Maven Plugin for AsyncAPI](#configuring-zenwave-code-generator-maven-plugin-for-asyncapi)
-        * [Generating DTOs](#generating-dtos)
-        * [Generating Provider or Client Code](#generating-provider-or-client-code)
-* [Examples](#examples)
-  * Ever-growing list...
+  * [About ZenWave Code Generator for AsyncAPI](#about-zenwave-code-generator-for-asyncapi)
+  * [Usage of this Repository](#usage-of-this-repository)
+  * [ZenWave AsyncAPI Generated Code in a Nutshell](#zenwave-asyncapi-generated-code-in-a-nutshell)
+    * [Provider vs Client](#provider-vs-client)
+    * [Using Generated Code to Produce Messages](#using-generated-code-to-produce-messages)
+    * [Using Generated Code to Consume Messages](#using-generated-code-to-consume-messages)
+  * [Configuring ZenWave Code Generator Maven Plugin for AsyncAPI](#configuring-zenwave-code-generator-maven-plugin-for-asyncapi)
+    * [Generating DTOs](#generating-dtos)
+    * [Generating Provider or Client Code](#generating-provider-or-client-code)
+* [Examples with Tests](#examples-with-tests)
+  * Ever-growing list of different flavors
 <!-- TOC -->
 
 ## About ZenWave Code Generator for AsyncAPI
@@ -33,7 +33,7 @@ It encapsulates SpringCloud Streams 3 API creating abstractions for many Enterpr
 
 This repository contains:
 
-- AsyncAPI defiitions: `src/main/resources/model/asyncapi.yml` and `src/main/resources/model/asyncapi-avro.yml`
+- AsyncAPI definitions: `src/main/resources/model/asyncapi.yml` and `src/main/resources/model/asyncapi-avro.yml`
 - ZenWave Maven Plugin to generate different flavors for producers and consumers in `pom.xml`
 - `IntegrationTest` class and accompanying `TestsConfiguration` for each flavor. 
 
@@ -184,12 +184,12 @@ https://github.com/ZenWave360/AsyncAPI-ApiFirst-Generator-KitchenSink/blob/main/
 Documentation: https://zenwave360.github.io/zenwave-code-generator/plugins/asyncapi-spring-cloud-streams3/
 
 
-# Examples
+# Examples with Tests
 
-This is an ever-growing list of examples:
+This is an ever-growing list of examples with tests of different implementation flavors:
 
 <!-- TOC -->
-* [Examples](#examples)
+* [Examples with Tests](#examples-with-tests)
   * [Imperative Flavor with JSON DTOs](#imperative-flavor-with-json-dtos)
     * [Plain StreamCloudStreams Implementation](#plain-streamcloudstreams-implementation)
     * [With EnterPrise Envelope](#with-enterprise-envelope)
@@ -218,7 +218,7 @@ Provider: https://github.com/ZenWave360/AsyncAPI-ApiFirst-Generator-KitchenSink/
 
 Client: https://github.com/ZenWave360/AsyncAPI-ApiFirst-Generator-KitchenSink/blob/main/pom.xml#L333
 
-### With EnterPrise Envelope
+### With Enterprise Envelope
 
 Provider: https://github.com/ZenWave360/AsyncAPI-ApiFirst-Generator-KitchenSink/blob/main/pom.xml#L351
 
