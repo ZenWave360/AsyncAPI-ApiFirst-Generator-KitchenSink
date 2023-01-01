@@ -1,0 +1,70 @@
+asyncapi: 2.4.0
+info:
+  title: Zenwave 360 Generated API
+  version: 0.0.1
+
+defaultContentType: application/*+avro
+
+tags:
+  - name: "Default"
+  - name: "Customer"
+
+channels:
+  customer.requests.avro:
+    subscribe:
+      summary: Customer Async Requests
+      operationId: doCustomerRequestAvro
+      tags:
+        - name: Customer
+      message:
+        $ref: "#/components/messages/CustomerRequestMessage"
+  customer.events.avro:
+    publish:
+      summary: Customer Domain Events
+      operationId: onCustomerEventAvro
+      x-envelope-java-type: io.zenwave360.example.adapters.events.avro.Envelope
+      tags:
+        - name: Customer
+      message:
+        oneOf:
+          - $ref: "#/components/messages/CustomerEventMessage"
+          - $ref: "#/components/messages/CustomerEventMessage2"
+
+components:
+  messages:
+    CustomerRequestMessage:
+      name: CustomerRequestMessage
+      title: Async Command/Request for a Customer
+      summary: Async Command/Request for a Customer
+      schemaFormat: application/vnd.apache.avro+json;version=1.9.0
+      headers:
+        type: object
+        properties:
+          entity-id:
+            type: string
+      payload:
+        $ref: "avro/CustomerRequestPayload.avsc"
+    CustomerEventMessage:
+      name: CustomerEventMessage
+      title: Message for a Customer Event
+      summary: Message for a Customer Event
+      schemaFormat: application/vnd.apache.avro+json;version=1.9.0
+      headers:
+        type: object
+        properties:
+          entity-id:
+            type: string
+      payload:
+        $ref: "avro/CustomerEventPayload.avsc"
+    CustomerEventMessage2:
+      name: CustomerEventMessage2
+      title: Message for a Customer Event
+      summary: Message for a Customer Event
+      schemaFormat: application/vnd.apache.avro+json;version=1.9.0
+      headers:
+        type: object
+        properties:
+          entity-id:
+            type: string
+      payload:
+        $ref: "avro/CustomerEventPayload2.avsc"

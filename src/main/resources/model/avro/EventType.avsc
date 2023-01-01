@@ -1,0 +1,6 @@
+{
+  "type" : "enum",
+  "name" : "EventType",
+  "namespace" : "io.zenwave360.example.adapters.events.avro",
+  "symbols" : [ "updated", "created", "deleted" ]
+}

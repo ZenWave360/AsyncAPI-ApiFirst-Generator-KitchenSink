@@ -1,0 +1,103 @@
+asyncapi: 2.4.0
+info:
+  title: Zenwave 360 Generated API
+  version: 0.0.1
+
+defaultContentType: application/json
+
+tags:
+  - name: "Default"
+  - name: "Customer"
+
+channels:
+  customers:
+    publish:
+      summary: Customer Channel Events
+      operationId: onCustomerEvent
+      tags:
+        - name: Customer
+      message:
+        oneOf:
+          - $ref: "#/components/messages/CustomerCreatedMessage"
+          - $ref: "#/components/messages/CustomerUpdatedMessage"
+          - $ref: "#/components/messages/CustomerDeletedMessage"
+
+components:
+  messages:
+    CustomerCreatedMessage:
+      name: CustomerCreated
+      title: Message for Customer Created Event
+      summary: Message for Customer Created Event
+      schemaFormat: application/vnd.aai.asyncapi;version=2.4.0
+      payload:
+        $ref: "#/components/schemas/CustomerCreatedPayload"
+    CustomerUpdatedMessage:
+      name: CustomerUpdated
+      title: Message for Customer Updated Event
+      summary: Message for Customer Updated Event
+      schemaFormat: application/vnd.aai.asyncapi;version=2.4.0
+      payload:
+        $ref: "#/components/schemas/CustomerUpdatedPayload"
+    CustomerDeletedMessage:
+      name: CustomerDeleted
+      title: Message for Customer Deleted Event
+      summary: Message for Customer Deleted Event
+      schemaFormat: application/vnd.aai.asyncapi;version=2.4.0
+      payload:
+        $ref: "#/components/schemas/CustomerDeletedPayload"
+
+  schemas:
+    Customer:
+      type: "object"
+      x-business-entity: "Customer"
+      required:
+      - "firstName"
+      - "lastName"
+      - "password"
+      - "email"
+      - "username"
+      properties:
+        id:
+          type: "string"
+        firstName:
+          type: "string"
+          minLength: 3
+          maxLength: 250
+        lastName:
+          type: "string"
+          minLength: 3
+          maxLength: 250
+        password:
+          type: "string"
+          minLength: 3
+          maxLength: 250
+        email:
+          type: "string"
+          minLength: 3
+          maxLength: 250
+        username:
+          type: "string"
+          minLength: 3
+          maxLength: 250
+    CustomerCreatedPayload:
+      type: object
+      properties:
+        customerId:
+          type: integer
+          format: int64
+        customer:
+          $ref: "#/components/schemas/Customer"
+    CustomerUpdatedPayload:
+      type: object
+      properties:
+        customerId:
+          type: integer
+          format: int64
+        customer:
+          $ref: "#/components/schemas/Customer"
+    CustomerDeletedPayload:
+      type: object
+      properties:
+        customerId:
+          type: integer
+          format: int64

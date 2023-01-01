@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        on-customer-event-in-0:
+          dead-letter-queue-error-map: >
+            {
+              'javax.validation.ValidationException': 'on-customer-event-validation-error-out-0',
+              'java.lang.Exception': 'on-customer-event-error-out-0'
+            }
+
+        on-customer-event-error-out-0:
+          group: zenwave360-example
+          destination: customer.events.errors
+          content-type: application/json
+        on-customer-event-error-in-0:
+          group: zenwave360-example
+          destination: customer.events.errors
+          content-type: application/json
+        on-customer-event-validation-error-out-0:
+          group: zenwave360-example
+          destination: customer.events.validation.errors
+          content-type: application/json
+        on-customer-event-validation-error-in-0:
+          group: zenwave360-example
+          destination: customer.events.validation.errors
+          content-type: application/json

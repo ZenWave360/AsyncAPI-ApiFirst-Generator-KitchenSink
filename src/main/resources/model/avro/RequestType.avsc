@@ -1,0 +1,6 @@
+{
+  "type" : "enum",
+  "name" : "RequestType",
+  "namespace" : "io.zenwave360.example.adapters.events.avro",
+  "symbols" : [ "delete", "create", "update" ]
+}

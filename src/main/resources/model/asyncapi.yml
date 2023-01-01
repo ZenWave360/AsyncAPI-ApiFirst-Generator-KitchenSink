@@ -1,0 +1,151 @@
+asyncapi: 2.4.0
+info:
+  title: Zenwave 360 Generated API
+  version: 0.0.1
+
+defaultContentType: application/json
+
+tags:
+  - name: "Default"
+  - name: "Customer"
+
+channels:
+  customer.requests:
+    subscribe:
+      summary: Customer Async Requests
+      operationId: doCustomerRequest
+      tags:
+        - name: Customer
+      message:
+        $ref: "#/components/messages/CustomerRequestMessage"
+  customer.events:
+    publish:
+      summary: Customer Domain Events
+      operationId: onCustomerEvent
+      x-envelope-java-type: io.zenwave360.example.events.support.model.Envelope
+      tags:
+        - name: Customer
+      message:
+        $ref: "#/components/messages/CustomerEventMessage"
+
+components:
+  messages:
+    CustomerRequestMessage:
+      name: CustomerRequestMessage
+      title: Async Command/Request for a Customer
+      summary: Async Command/Request for a Customer
+      schemaFormat: application/vnd.aai.asyncapi;version=2.4.0
+      headers:
+        type: object
+        properties:
+          entity-id:
+            type: string
+      traits:
+        - $ref: '#/components/messageTraits/CommonHeaders'
+      payload:
+        $ref: "#/components/schemas/CustomerRequestPayload"
+    CustomerEventMessage:
+      name: CustomerEventMessage
+      title: Message for a Customer Event
+      summary: Message for a Customer Event
+      schemaFormat: application/vnd.aai.asyncapi;version=2.4.0
+      headers:
+        type: object
+        properties:
+          entity-id:
+            type: string
+          common-header:
+            type: string
+            description: This one shouldn't be overwritten by traits
+      traits:
+        - $ref: '#/components/messageTraits/CommonHeaders'
+      payload:
+        $ref: "#/components/schemas/CustomerEventPayload"
+
+  schemas:
+    Customer:
+      type: "object"
+      x-business-entity: "Customer"
+      required:
+        - "firstName"
+        - "lastName"
+        - "password"
+        - "email"
+        - "username"
+      properties:
+        id:
+          type: "string"
+        firstName:
+          type: "string"
+          minLength: 3
+          maxLength: 250
+        lastName:
+          type: "string"
+          minLength: 3
+          maxLength: 250
+        password:
+          type: "string"
+          minLength: 3
+          maxLength: 250
+        email:
+          type: "string"
+          minLength: 3
+          maxLength: 250
+        username:
+          type: "string"
+          minLength: 3
+          maxLength: 250
+
+    CustomerCriteria:
+      type: "object"
+      x-business-entity: "CustomerCriteria"
+      properties:
+        id:
+          type: "string"
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        password:
+          type: "string"
+        email:
+          type: "string"
+        username:
+          type: "string"
+
+    CustomerRequestPayload:
+      type: object
+      properties:
+        customerId:
+          type: string
+        requestType:
+          type: string
+          enum:
+            - "create"
+            - "update"
+            - "delete"
+        customer:
+          $ref: "#/components/schemas/Customer"
+
+    CustomerEventPayload:
+      type: object
+      properties:
+        customerId:
+          type: string
+        eventType:
+          type: string
+          enum:
+            - "created"
+            - "updated"
+            - "deleted"
+        customer:
+          $ref: "#/components/schemas/Customer"
+
+  messageTraits:
+    CommonHeaders:
+      headers:
+        type: object
+        properties:
+          common-header:
+            type: string
+            description: "this should appear as javadoc comment"

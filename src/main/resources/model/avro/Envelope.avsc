@@ -1,0 +1,9 @@
+{
+    "namespace": "io.zenwave360.example.adapters.events.avro",
+    "type": "record",
+    "name": "Envelope",
+    "fields": [
+        {"name": "metadata", "type": ["null", {"type": "map", "values": "string"}]},
+        {"name": "payload", "type": ["CustomerEventPayload", "CustomerEventPayload2"]}
+ ]
+}
