@@ -242,6 +242,15 @@ class EnvelopeWrapperUnWrapper implements CustomerEventsProducer.EnvelopeWrapper
 }
 ```
 
+```yaml
+channels:
+  customer.events:
+    publish:
+      summary: Customer Domain Events
+      operationId: onCustomerEvent
+      x-envelope-java-type: io.zenwave360.example.events.support.model.Envelope
+```
+
 ### With DeadLetterQueue Routing
 
 Provider: https://github.com/ZenWave360/AsyncAPI-ApiFirst-Generator-KitchenSink/blob/main/pom.xml#L390
