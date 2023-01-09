@@ -24,7 +24,6 @@ import static io.zenwave360.example.boot.config.TestUtils.getReceivedHeaders;
 @SpringBootTest(classes = Zenwave360ExampleApplication.class)
 @ContextConfiguration(classes = TestsConfiguration.class)
 @DisplayName("Integration Tests: Imperative with json dtos via jdbc outbox")
-@Disabled // FIXME: review why this test is failing
 public class IntegrationTests {
 
     private Logger log = org.slf4j.LoggerFactory.getLogger(getClass());
