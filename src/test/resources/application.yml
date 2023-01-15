@@ -20,6 +20,10 @@ spring:
   datasource.password: password
   kafka:
     bootstrap-servers: ${spring.embedded.kafka.brokers}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
   cloud:
     stream:
       function:
@@ -43,9 +47,3 @@ spring:
           destination: customer.events
           content-type: application/json
 
-      kafka:
-        bindings:
-          on-customer-event-out-0:
-            producer:
-              configuration:
-                key.serializer: org.apache.kafka.common.serialization.LongSerializer

@@ -57,6 +57,14 @@ components:
           common-header:
             type: string
             description: This one shouldn't be overwritten by traits
+          kafka_messageKey:
+            type: string
+            description: This one will be populated automatically at runtime
+            x-runtime-expression: $message.payload#/customerId
+          tracingId:
+            type: string
+            description: This one will be populated automatically at runtime
+            x-runtime-expression: $tracingIdSupplier
       traits:
         - $ref: '#/components/messageTraits/CommonHeaders'
       payload:
@@ -149,3 +157,4 @@ components:
           common-header:
             type: string
             description: "this should appear as javadoc comment"
+

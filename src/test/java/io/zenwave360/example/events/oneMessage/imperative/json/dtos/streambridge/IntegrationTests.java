@@ -79,5 +79,7 @@ public class IntegrationTests {
         var receivedHeaders = getReceivedHeaders(onCustomerEventConsumerService);
         Assertions.assertEquals("123", receivedHeaders.get(0).get("entity-id"));
         Assertions.assertEquals("value", receivedHeaders.get(0).get("undocumented"));
+        Assertions.assertEquals("123", receivedHeaders.get(0).get("kafka_receivedMessageKey"));
+        Assertions.assertEquals("test-tracing-id", receivedHeaders.get(0).get("tracingId"));
     }
 }

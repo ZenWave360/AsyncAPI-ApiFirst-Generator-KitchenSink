@@ -15,12 +15,18 @@ import javax.validation.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 
 @ComponentScan
 public class TestsConfiguration {
 
     private Logger log = LoggerFactory.getLogger(TestsConfiguration.class);
+
+    @Bean
+    public Supplier tracingIdSupplier() {
+        return () -> "test-tracing-id";
+    }
 
     @Bean
     public IOnCustomerEventConsumerService onCustomerEventConsumerService() {
