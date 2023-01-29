@@ -22,7 +22,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 import static io.zenwave360.example.boot.config.TestUtils.awaitReceivedMessages;
-import static io.zenwave360.example.boot.config.TestUtils.newCustomer;
+import static io.zenwave360.example.boot.config.TestUtils.newAvroCustomer;
 
 @EmbeddedKafka
 @SpringBootTest(classes = Zenwave360ExampleApplication.class)
@@ -48,7 +48,7 @@ public class IntegrationTests {
         // Given
         var message = new CustomerRequestPayload();
         message.setId("123");
-        message.setPayload(newCustomer());
+        message.setPayload(newAvroCustomer());
         message.setRequestType(RequestType.create);
         var headers = new ICustomerCommandsProducer.CustomerRequestPayloadHeaders();
         // When
@@ -64,7 +64,7 @@ public class IntegrationTests {
         // Given
         var message = new CustomerEventPayload();
         message.setId("123");
-        message.setPayload(newCustomer());
+        message.setPayload(newAvroCustomer());
         message.setEventType(EventType.created);
         var headers = new ICustomerEventsProducer.CustomerEventPayloadHeaders();
         // Given
@@ -81,7 +81,7 @@ public class IntegrationTests {
         // Given
         var message = new CustomerEventPayload2();
         message.setId("123");
-        message.setPayload(newCustomer());
+        message.setPayload(newAvroCustomer());
         message.setEventType(EventType.created);
         var headers = new ICustomerEventsProducer.CustomerEventPayload2Headers();
         // Given

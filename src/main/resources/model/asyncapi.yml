@@ -59,11 +59,11 @@ components:
             description: This one shouldn't be overwritten by traits
           kafka_messageKey:
             type: string
-            description: This one will be populated automatically at runtime
-            x-runtime-expression: $message.payload#/customerId
+            description: This header value will be populated automatically at runtime
+            x-runtime-expression: $message.payload#/customer/id
           tracingId:
             type: string
-            description: This one will be populated automatically at runtime
+            description: This header value will be populated automatically at runtime
             x-runtime-expression: $tracingIdSupplier
       traits:
         - $ref: '#/components/messageTraits/CommonHeaders'

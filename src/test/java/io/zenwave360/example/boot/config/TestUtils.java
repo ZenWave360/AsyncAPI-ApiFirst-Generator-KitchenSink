@@ -23,8 +23,19 @@ public class TestUtils {
         return (List) ReflectionTestUtils.getField(consumer, "receivedHeaders");
     }
 
-    public static Customer newCustomer() {
+    public static Customer newAvroCustomer() {
         var customer = new Customer();
+        customer.setId("123");
+        customer.setUsername("joe");
+        customer.setPassword("123456");
+        customer.setEmail("joe@example.com");
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
+        return customer;
+    }
+
+    public static io.zenwave360.example.events.oneMessage.model.Customer newCustomer() {
+        var customer = new io.zenwave360.example.events.oneMessage.model.Customer();
         customer.setId("123");
         customer.setUsername("joe");
         customer.setPassword("123456");
