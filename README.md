@@ -1,10 +1,10 @@
 # ZenWave Code Generator for AsyncAPI: API-First Tests, Examples and the Kitchen Sink
 > 👉 [ZenWave360](https://zenwave360.github.io/) Helps You Create Software that's Easy to Understand
 
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.zenwave360.zenwave-code-generator/zenwave-code-generator.svg?label=Maven%20Central&logo=apachemaven)](https://search.maven.org/artifact/io.github.zenwave360.zenwave-code-generator/zenwave-code-generator)
-[![GitHub](https://img.shields.io/github/license/ZenWave360/zenwave-code-generator)](https://github.com/ZenWave360/zenwave-code-generator/blob/main/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.zenwave360.zenwave-sdk/zenwave-sdk.svg?label=Maven%20Central&logo=apachemaven)](https://search.maven.org/artifact/io.github.zenwave360.zenwave-sdk/zenwave-sdk)
+[![GitHub](https://img.shields.io/github/license/ZenWave360/zenwave-sdk)](https://github.com/ZenWave360/zenwave-sdk/blob/main/LICENSE)
 
-This repository contains a complete set of examples and tests for [ZenWave Code Generator for AsyncAPI](https://zenwave360.github.io/zenwave-code-generator/plugins/asyncapi-spring-cloud-streams3/).
+This repository contains a complete set of examples and tests for [ZenWave Code Generator for AsyncAPI](https://zenwave360.github.io/zenwave-sdk/plugins/asyncapi-spring-cloud-streams3/).
 
 <!-- TOC -->
 * [ZenWave Code Generator for AsyncAPI: API-First Tests, Examples and the Kitchen Sink](#zenwave-code-generator-for-asyncapi--api-first-tests-examples-and-the-kitchen-sink)
@@ -43,7 +43,7 @@ After cloning this repository, you can run the following command to generate the
 mvn clean generate-sources
 ```
 
-![AsyncAPI and Spring Cloud Streams 3](https://zenwave360.github.io/zenwave-code-generator/docs/ZenWave360-AsyncAPI-SpringCloudStreams.excalidraw.svg)
+![AsyncAPI and Spring Cloud Streams 3](https://zenwave360.github.io/zenwave-sdk/docs/ZenWave360-AsyncAPI-SpringCloudStreams.excalidraw.svg)
 
 Each java package contains code to produce and consume messages in different flavors.
 
@@ -53,7 +53,7 @@ If you want to explore how each of these flavors work you can find an `Integrati
 
 ### Provider vs Client
 
-AsyncAPI definitions are inherently **symmetrical** it's difficult to establish the roles of client/server. ZenWave generates code based on `provider` and `client` roles, where a `provider` "produces events" and "consumes commands". See [ZenWave Spring Cloud Streams Generator](https://zenwave360.github.io/zenwave-code-generator/plugins/asyncapi-spring-cloud-streams3/) documentation for more details on "publish/subscribe", "producer/consumer" and "provider/client" roles.
+AsyncAPI definitions are inherently **symmetrical** it's difficult to establish the roles of client/server. ZenWave generates code based on `provider` and `client` roles, where a `provider` "produces events" and "consumes commands". See [ZenWave Spring Cloud Streams Generator](https://zenwave360.github.io/zenwave-sdk/plugins/asyncapi-spring-cloud-streams3/) documentation for more details on "publish/subscribe", "producer/consumer" and "provider/client" roles.
 
 NOTE: a `provider` can both produce (events) and consume (requests/commands) messages for the same API.
 
@@ -180,14 +180,14 @@ class DoCustomerRequestConsumerService implements IDoCustomerRequestConsumerServ
 ### Generating DTOs
 
 Documentation: 
-https://zenwave360.github.io/zenwave-code-generator/plugins/asyncapi-jsonschema2pojo/
+https://zenwave360.github.io/zenwave-sdk/plugins/asyncapi-jsonschema2pojo/
 
 Example on this repo:
 https://github.com/ZenWave360/AsyncAPI-ApiFirst-Generator-KitchenSink/blob/main/pom.xml#L284
 
 ### Generating Provider or Client Code
 
-Documentation: https://zenwave360.github.io/zenwave-code-generator/plugins/asyncapi-spring-cloud-streams3/
+Documentation: https://zenwave360.github.io/zenwave-sdk/plugins/asyncapi-spring-cloud-streams3/
 
 
 # Examples with Tests
