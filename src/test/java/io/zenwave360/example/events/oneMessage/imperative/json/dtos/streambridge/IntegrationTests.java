@@ -1,5 +1,6 @@
 package io.zenwave360.example.events.oneMessage.imperative.json.dtos.streambridge;
 
+import io.zenwave360.example.BaseIntegrationTest;
 import io.zenwave360.example.boot.Zenwave360ExampleApplication;
 import io.zenwave360.example.boot.config.TestUtils;
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.streambridge.client.ICustomerCommandsProducer;
@@ -18,19 +19,18 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.context.ContextConfiguration;
 
 import static io.zenwave360.example.boot.config.TestUtils.awaitReceivedMessages;
 import static io.zenwave360.example.boot.config.TestUtils.getReceivedHeaders;
 import static io.zenwave360.example.boot.config.TestUtils.getReceivedMessages;
 
-@EmbeddedKafka
+
 @SpringBootTest(classes = Zenwave360ExampleApplication.class)
 @ContextConfiguration(classes = TestsConfiguration.class)
 @DisplayName("Integration Tests: Imperative with json dtos via streambridge")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class IntegrationTests {
+public class IntegrationTests extends BaseIntegrationTest {
 
     private Logger log = org.slf4j.LoggerFactory.getLogger(getClass());
 

@@ -1,20 +1,17 @@
 package io.zenwave360.example.events.oneMessage.imperative.json.dtos.streambridge;
 
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.streambridge.client.IOnCustomerEventConsumerService;
-import io.zenwave360.example.events.support.model.EnvelopeWrapperUnWrapper;
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.streambridge.provider.IDoCustomerRequestConsumerService;
 import io.zenwave360.example.events.oneMessage.model.CustomerEventPayload;
 import io.zenwave360.example.events.oneMessage.model.CustomerRequestPayload;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.messaging.Message;
 
-import javax.validation.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 
@@ -47,6 +44,7 @@ public class TestsConfiguration {
             log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
             receivedMessages.add(payload);
             receivedHeaders.add(headers);
+            log.debug("this {}", ToStringBuilder.reflectionToString(this));
         }
     }
 
@@ -59,6 +57,7 @@ public class TestsConfiguration {
             log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
             receivedMessages.add(payload);
             receivedHeaders.add(headers);
+            log.debug("this {}", ToStringBuilder.reflectionToString(this));
         }
     }
 }

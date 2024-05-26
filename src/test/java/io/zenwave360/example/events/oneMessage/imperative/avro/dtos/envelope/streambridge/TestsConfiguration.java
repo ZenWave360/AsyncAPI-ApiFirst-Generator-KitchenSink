@@ -4,6 +4,7 @@ import io.zenwave360.example.adapters.events.avro.CustomerEventPayload;
 import io.zenwave360.example.adapters.events.avro.CustomerEventPayload2;
 import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.envelope.streambridge.client.IOnCustomerEventAvroConsumerService;
 import io.zenwave360.example.events.support.model.AvroEnvelopeWrapperUnWrapper;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +36,7 @@ public class TestsConfiguration {
                 log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
                 receivedMessages.add(payload);
                 receivedHeaders.add(headers);
+                log.debug("this {}", ToStringBuilder.reflectionToString(this));
             }
             @Override
             public void onCustomerEventAvro(CustomerEventPayload2 payload, CustomerEventPayload2Headers headers) {

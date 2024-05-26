@@ -1,6 +1,5 @@
 package io.zenwave360.example.events.oneMessage.imperative.json.dtos.outbox.jdbc;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.outbox.jdbc.client.CustomerCommandsProducer;
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.outbox.jdbc.client.IOnCustomerEventConsumerService;
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.outbox.jdbc.provider.CustomerEventsProducer;
@@ -20,10 +19,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -99,7 +95,7 @@ public class TestsConfiguration {
         @Transactional(propagation = Propagation.REQUIRES_NEW)
         public void processCustomerCommandsProducerOutboxRow(Map<String, Object> row, String tableName) throws Exception {
             customerCommandsProducer.sendOutboxMessage(row);
-            jdbcTemplate.update("UPDATE " + tableName + " SET sent_at = current_timestamp() WHERE id = ?", row.get("id"));
+            jdbcTemplate.update("UPDATE " + tableName + " SET sent_at = current_timestamp WHERE id = ?", row.get("id"));
         }
 
         @Scheduled(fixedDelay = 1000)
@@ -121,7 +117,7 @@ public class TestsConfiguration {
         @Transactional(propagation = Propagation.REQUIRES_NEW)
         public void processCustomerEventsProducerOutboxRow(Map<String, Object> row, String tableName) throws Exception {
             customerEventsProducer.sendOutboxMessage(row);
-            jdbcTemplate.update("UPDATE " + tableName + " SET sent_at = current_timestamp() WHERE id = ?", row.get("id"));
+            jdbcTemplate.update("UPDATE " + tableName + " SET sent_at = current_timestamp WHERE id = ?", row.get("id"));
         }
     }
 }

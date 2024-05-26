@@ -1,6 +1,7 @@
 package io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.jdbc;
 
 import io.zenwave360.example.adapters.events.avro.CustomerEventPayload;
+import io.zenwave360.example.adapters.events.avro.CustomerEventPayload2;
 import io.zenwave360.example.adapters.events.avro.CustomerRequestPayload;
 import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.jdbc.client.CustomerCommandsProducer;
 import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.jdbc.client.IOnCustomerEventAvroConsumerService;
@@ -40,6 +41,10 @@ public class TestsConfiguration {
                 log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
                 receivedMessages.add(payload);
                 receivedHeaders.add(headers);
+            }
+
+            @Override
+            public void onCustomerEventAvro(CustomerEventPayload2 payload, CustomerEventPayload2Headers headers) {
             }
         };
     }

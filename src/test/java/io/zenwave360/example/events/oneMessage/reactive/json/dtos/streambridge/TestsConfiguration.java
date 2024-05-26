@@ -1,16 +1,15 @@
 package io.zenwave360.example.events.oneMessage.reactive.json.dtos.streambridge;
 
-import io.zenwave360.example.events.oneMessage.reactive.json.dtos.streambridge.client.IOnCustomerEventConsumerService;
-import io.zenwave360.example.events.oneMessage.reactive.json.dtos.streambridge.provider.IDoCustomerRequestConsumerService;
 import io.zenwave360.example.events.oneMessage.model.CustomerEventPayload;
 import io.zenwave360.example.events.oneMessage.model.CustomerRequestPayload;
+import io.zenwave360.example.events.oneMessage.reactive.json.dtos.streambridge.client.IOnCustomerEventConsumerService;
+import io.zenwave360.example.events.oneMessage.reactive.json.dtos.streambridge.provider.IDoCustomerRequestConsumerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;

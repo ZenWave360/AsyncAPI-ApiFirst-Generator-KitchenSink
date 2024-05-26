@@ -1,5 +1,6 @@
 package io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.jdbc;
 
+import io.zenwave360.example.BaseIntegrationTest;
 import io.zenwave360.example.adapters.events.avro.CustomerEventPayload;
 import io.zenwave360.example.adapters.events.avro.CustomerRequestPayload;
 import io.zenwave360.example.adapters.events.avro.EventType;
@@ -16,22 +17,20 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 
 import static io.zenwave360.example.boot.config.TestUtils.awaitReceivedMessages;
 import static io.zenwave360.example.boot.config.TestUtils.getReceivedHeaders;
 import static io.zenwave360.example.boot.config.TestUtils.newAvroCustomer;
-import static org.awaitility.Awaitility.await;
 
-@EmbeddedKafka
+
 @SpringBootTest(classes = Zenwave360ExampleApplication.class)
 @ContextConfiguration(classes = TestsConfiguration.class)
 @DisplayName("Integration Tests: Imperative with avro dtos via jdbc outbox")
 @DirtiesContext // shutdown the outbox @Scheduled task
 @Disabled // FIXME: review why this test is failing
-public class IntegrationTests {
+public class IntegrationTests extends BaseIntegrationTest {
 
     private Logger log = org.slf4j.LoggerFactory.getLogger(getClass());
 

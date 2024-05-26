@@ -273,7 +273,7 @@ spring:
         on-customer-event-in-0:
           dead-letter-queue-error-map: >
             {
-              'javax.validation.ValidationException': 'on-customer-event-validation-error-out-0',
+              'jakarta.validation.ValidationException': 'on-customer-event-validation-error-out-0',
               'java.lang.Exception': 'on-customer-event-error-out-0'
             }
 ```

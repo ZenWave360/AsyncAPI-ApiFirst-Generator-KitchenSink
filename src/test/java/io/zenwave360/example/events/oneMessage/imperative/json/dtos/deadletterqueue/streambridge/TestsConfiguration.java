@@ -4,13 +4,13 @@ import io.zenwave360.example.events.oneMessage.imperative.json.dtos.deadletterqu
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.deadletterqueue.streambridge.provider.IDoCustomerRequestConsumerService;
 import io.zenwave360.example.events.oneMessage.model.CustomerEventPayload;
 import io.zenwave360.example.events.oneMessage.model.CustomerRequestPayload;
+import jakarta.validation.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.messaging.Message;
 
-import javax.validation.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;

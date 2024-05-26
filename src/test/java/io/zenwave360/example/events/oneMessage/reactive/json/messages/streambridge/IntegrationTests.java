@@ -1,5 +1,6 @@
 package io.zenwave360.example.events.oneMessage.reactive.json.messages.streambridge;
 
+import io.zenwave360.example.BaseIntegrationTest;
 import io.zenwave360.example.boot.Zenwave360ExampleApplication;
 import io.zenwave360.example.events.oneMessage.model.CustomerEventPayload;
 import io.zenwave360.example.events.oneMessage.model.CustomerRequestPayload;
@@ -13,18 +14,16 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.context.ContextConfiguration;
 
 import static io.zenwave360.example.boot.config.TestUtils.awaitReceivedMessages;
 import static io.zenwave360.example.boot.config.TestUtils.getReceivedHeaders;
-import static org.awaitility.Awaitility.await;
 
-@EmbeddedKafka
+
 @SpringBootTest(classes = Zenwave360ExampleApplication.class)
 @ContextConfiguration(classes = TestsConfiguration.class)
 @DisplayName("Integration Tests: Reactive with json messages via streambridge")
-public class IntegrationTests {
+public class IntegrationTests extends BaseIntegrationTest {
 
     private Logger log = org.slf4j.LoggerFactory.getLogger(getClass());
 

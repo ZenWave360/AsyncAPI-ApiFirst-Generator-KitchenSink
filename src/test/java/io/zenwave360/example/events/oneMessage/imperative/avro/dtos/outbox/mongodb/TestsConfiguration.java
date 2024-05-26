@@ -1,11 +1,12 @@
 package io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.mongodb;
 
 import io.zenwave360.example.adapters.events.avro.CustomerEventPayload;
+import io.zenwave360.example.adapters.events.avro.CustomerEventPayload2;
 import io.zenwave360.example.adapters.events.avro.CustomerRequestPayload;
-import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.mongodb.client.IOnCustomerEventAvroConsumerService;
-import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.mongodb.provider.IDoCustomerRequestAvroConsumerService;
 import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.mongodb.client.CustomerCommandsProducer;
+import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.mongodb.client.IOnCustomerEventAvroConsumerService;
 import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.mongodb.provider.CustomerEventsProducer;
+import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.outbox.mongodb.provider.IDoCustomerRequestAvroConsumerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -37,6 +38,10 @@ public class TestsConfiguration {
                 log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
                 receivedMessages.add(payload);
                 receivedHeaders.add(headers);
+            }
+
+            @Override
+            public void onCustomerEventAvro(CustomerEventPayload2 payload, CustomerEventPayload2Headers headers) {
             }
         };
     }

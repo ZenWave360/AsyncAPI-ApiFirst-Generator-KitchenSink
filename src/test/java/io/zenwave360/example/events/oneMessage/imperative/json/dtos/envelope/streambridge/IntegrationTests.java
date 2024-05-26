@@ -1,5 +1,6 @@
 package io.zenwave360.example.events.oneMessage.imperative.json.dtos.envelope.streambridge;
 
+import io.zenwave360.example.BaseIntegrationTest;
 import io.zenwave360.example.boot.Zenwave360ExampleApplication;
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.envelope.streambridge.client.IOnCustomerEventConsumerService;
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.envelope.streambridge.provider.ICustomerEventsProducer;
@@ -11,17 +12,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.kafka.test.context.EmbeddedKafka;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 
 import static io.zenwave360.example.boot.config.TestUtils.awaitReceivedMessages;
 import static io.zenwave360.example.boot.config.TestUtils.getReceivedHeaders;
 
-@EmbeddedKafka
+
 @SpringBootTest(classes = Zenwave360ExampleApplication.class)
 @ContextConfiguration(classes = TestsConfiguration.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 @DisplayName("Integration Tests: Imperative with json dtos with envelope via streambridge")
-public class IntegrationTests {
+public class IntegrationTests extends BaseIntegrationTest {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 

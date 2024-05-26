@@ -6,6 +6,7 @@ import io.zenwave360.example.events.oneMessage.imperative.json.dtos.outbox.mongo
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.outbox.mongodb.provider.IDoCustomerRequestConsumerService;
 import io.zenwave360.example.events.oneMessage.model.CustomerEventPayload;
 import io.zenwave360.example.events.oneMessage.model.CustomerRequestPayload;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -46,6 +47,7 @@ public class TestsConfiguration {
             log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
             receivedMessages.add(payload);
             receivedHeaders.add(headers);
+            log.debug(ToStringBuilder.reflectionToString(this));
         }
     }
 
@@ -58,6 +60,7 @@ public class TestsConfiguration {
             log.info("Received '{}' message with payload: {}", payload.getClass(), payload);
             receivedMessages.add(payload);
             receivedHeaders.add(headers);
+            log.debug(ToStringBuilder.reflectionToString(this));
         }
     }
 

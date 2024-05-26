@@ -1,5 +1,6 @@
 package io.zenwave360.example.events.oneMessage.imperative.json.dtos.outbox.jdbc;
 
+import io.zenwave360.example.BaseIntegrationTest;
 import io.zenwave360.example.boot.Zenwave360ExampleApplication;
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.outbox.jdbc.client.ICustomerCommandsProducer;
 import io.zenwave360.example.events.oneMessage.imperative.json.dtos.outbox.jdbc.client.IOnCustomerEventConsumerService;
@@ -8,23 +9,23 @@ import io.zenwave360.example.events.oneMessage.imperative.json.dtos.outbox.jdbc.
 import io.zenwave360.example.events.oneMessage.model.CustomerEventPayload;
 import io.zenwave360.example.events.oneMessage.model.CustomerRequestPayload;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.kafka.test.context.EmbeddedKafka;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 
 import static io.zenwave360.example.boot.config.TestUtils.awaitReceivedMessages;
 import static io.zenwave360.example.boot.config.TestUtils.getReceivedHeaders;
 
-@EmbeddedKafka
+
 @SpringBootTest(classes = Zenwave360ExampleApplication.class)
 @ContextConfiguration(classes = TestsConfiguration.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 @DisplayName("Integration Tests: Imperative with json dtos via jdbc outbox")
-public class IntegrationTests {
+public class IntegrationTests extends BaseIntegrationTest {
 
     private Logger log = org.slf4j.LoggerFactory.getLogger(getClass());
 

@@ -1,5 +1,6 @@
 package io.zenwave360.example.events.oneMessage.imperative.avro.dtos.envelope.streambridge;
 
+import io.zenwave360.example.BaseIntegrationTest;
 import io.zenwave360.example.adapters.events.avro.CustomerEventPayload;
 import io.zenwave360.example.adapters.events.avro.CustomerEventPayload2;
 import io.zenwave360.example.adapters.events.avro.EventType;
@@ -7,26 +8,27 @@ import io.zenwave360.example.boot.Zenwave360ExampleApplication;
 import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.envelope.streambridge.client.IOnCustomerEventAvroConsumerService;
 import io.zenwave360.example.events.oneMessage.imperative.avro.dtos.envelope.streambridge.provider.ICustomerEventsProducer;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.util.ReflectionTestUtils;
+
+import java.util.List;
 
 import static io.zenwave360.example.boot.config.TestUtils.awaitReceivedMessages;
 import static io.zenwave360.example.boot.config.TestUtils.newAvroCustomer;
-import static org.awaitility.Awaitility.await;
 
-@EmbeddedKafka
+
 @SpringBootTest(classes = Zenwave360ExampleApplication.class)
 @ContextConfiguration(classes = TestsConfiguration.class)
 @DisplayName("Integration Tests: Imperative with avro dtos via streambridge")
 @ActiveProfiles("avro")
-public class IntegrationTests {
+public class IntegrationTests extends BaseIntegrationTest {
 
     private Logger log = org.slf4j.LoggerFactory.getLogger(getClass());
 
@@ -35,8 +37,13 @@ public class IntegrationTests {
     @Autowired
     IOnCustomerEventAvroConsumerService onCustomerEventConsumerService;
 
+    @BeforeEach
+    void setUp() {
+        ((List) ReflectionTestUtils.getField(onCustomerEventConsumerService, "receivedMessages")).clear();
+        ((List) ReflectionTestUtils.getField(onCustomerEventConsumerService, "receivedHeaders")).clear();
+    }
+
     @Test
-    @Disabled // we need a proper schema-registry in memory for multiple schemas
     void onCustomerEventTest() throws InterruptedException {
         // Given
         var message = new CustomerEventPayload();
@@ -53,7 +60,6 @@ public class IntegrationTests {
     }
 
     @Test
-    @Disabled
     void onCustomerEvent2Test() throws InterruptedException {
         // Given
         var message = new CustomerEventPayload2();
